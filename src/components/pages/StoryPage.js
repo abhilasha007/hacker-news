@@ -45,12 +45,15 @@ const StoryPage = () => {
               <h2 className='text-xl font-medium leading-6 text-gray-900'>
                 {story.title}
               </h2>
-              <p className='mt-1 text-sm text-gray-500'>{story.story_text}</p>
+              <p
+                className='mt-1 text-sm text-gray-500'
+                dangerouslySetInnerHTML={{ __html: story.story_text }}
+              ></p>
             </div>
 
             <div className=' px-5 pb-2 pt-4 sm:grid sm:grid-cols-5 sm:gap-2 sm:px-6'>
               {/* points */}
-              <dd className='mt-1 pb-2 text-sm text-gray-900 sm:col-span-1 sm:mt-0 flex'>
+              <dd className='mt-1 text-sm text-gray-900 sm:col-span-1 sm:mt-0 flex'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -75,7 +78,7 @@ const StoryPage = () => {
                 </span>
               </dd>
 
-              {/* source */}
+              {/* attached link */}
               <dd className='mt-1 text-sm text-gray-900 sm:col-span-1 sm:mt-0 flex'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -91,11 +94,18 @@ const StoryPage = () => {
                     d='M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244'
                   />
                 </svg>
-                <span className='story-source text-sm text-gray-700'>
-                  <a href={story.url} target='_blank' rel='noreferrer'>
-                    source
-                  </a>
-                </span>
+                {story.url ? (
+                  <span
+                    className='story-source text-sm text-gray-700'
+                    style={{ color: 'rgb(139,92,246)' }}
+                  >
+                    <a href={story.url} target='_blank' rel='noreferrer'>
+                      attached link
+                    </a>
+                  </span>
+                ) : (
+                  <></>
+                )}
               </dd>
 
               {/* comments */}
